@@ -1,0 +1,144 @@
+/* ==========================================
+   COMMON STYLES - Shared across all pages
+   ========================================== */
+
+/* Base HTML and Body Setup */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ==========================================
+   NAVIGATION BAR - Appears on all pages
+   ========================================== */
+
+nav {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1002;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95em;
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* Navigation hover effect */
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Active page indicator in navigation */
+nav a.active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================
+   KEYFRAME ANIMATIONS - Used across pages
+   ========================================== */
+
+/* Fade in effect for page load */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Slide down from top animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide up from bottom animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide down animation for modals */
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Pulsing effect for highlighted elements */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Glowing effect for coins and special items */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
+  50% { box-shadow: 0 8px 30px rgba(255, 215, 0, 0.8); }
+}
+
+/* Modal animation for webkit browsers */
+@keyframes animatetop {
+  from {
+    top: -500px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 0.6;
+  }
+}
+
+/* Modal animation for other browsers */
+@-webkit-keyframes animatetop {
+  from {
+    top: -500px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}

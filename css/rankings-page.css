@@ -1,0 +1,229 @@
+/* ==========================================
+   RANKINGS PAGE (rankings.html) STYLES
+   ========================================== */
+
+/* Override body for rankings page layout */
+body.rankings-page {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   PAGE CONTAINER - Main content wrapper
+   ========================================== */
+
+body.rankings-page .container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* ==========================================
+   PAGE HEADER - "Leaderboard" title
+   ========================================== */
+
+body.rankings-page h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================
+   USER INFO SECTION - Current user details
+   ========================================== */
+
+body.rankings-page .user-info {
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent */
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px); /* Glassmorphism */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* User name heading */
+body.rankings-page .user-info h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+/* User details paragraph */
+body.rankings-page .user-info p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* ==========================================
+   LOGOUT BUTTON
+   ========================================== */
+
+body.rankings-page .logout-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 25px;
+    background: #ff6b00; /* Orange */
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1em;
+}
+
+body.rankings-page .logout-btn:hover {
+    background: #e65100; /* Darker orange */
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   RANKINGS TABLE - Leaderboard display
+   ========================================== */
+
+body.rankings-page .rankings-table {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Table element */
+body.rankings-page table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table header */
+body.rankings-page thead {
+    background: rgba(0, 0, 0, 0.3); /* Dark header */
+}
+
+/* Table header cells */
+body.rankings-page th {
+    padding: 20px;
+    text-align: left;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Rank column - centered */
+body.rankings-page th:first-child {
+    text-align: center;
+    width: 80px;
+}
+
+/* Table data cells */
+body.rankings-page td {
+    padding: 18px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Rank number - centered and bold */
+body.rankings-page td:first-child {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* Table row hover effect */
+body.rankings-page tbody tr {
+    transition: all 0.3s ease;
+}
+
+body.rankings-page tbody tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   RANK MEDALS - Top 3 highlighting
+   ========================================== */
+
+/* Medal emoji in rank column */
+body.rankings-page .rank-medal {
+    font-size: 1.5em;
+}
+
+/* 1st place - gold gradient */
+body.rankings-page .rank-1 {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #333; /* Dark text on light background */
+}
+
+/* 2nd place - silver gradient */
+body.rankings-page .rank-2 {
+    background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+    color: #333;
+}
+
+/* 3rd place - bronze gradient */
+body.rankings-page .rank-3 {
+    background: linear-gradient(135deg, #cd7f32, #e09c5f);
+    color: #fff;
+}
+
+/* ==========================================
+   CURRENT USER HIGHLIGHT
+   ========================================== */
+
+body.rankings-page .current-user {
+    background: rgba(76, 175, 80, 0.2); /* Green highlight */
+    border-left: 4px solid #4CAF50; /* Green accent */
+}
+
+/* ==========================================
+   NO DATA MESSAGE - Empty state
+   ========================================== */
+
+body.rankings-page .no-data {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 1.3em;
+    opacity: 0.8;
+}
+
+/* Icon for empty state */
+body.rankings-page .no-data-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+/* Hidden elements (toggled by JavaScript) */
+#user-info {
+  display: none;
+}
+
+#no-data {
+  display: none;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN - Mobile/tablet
+   ========================================== */
+
+@media (max-width: 768px) {
+    body.rankings-page h1 {
+        font-size: 2em;
+    }
+
+    /* Smaller table text on mobile */
+    body.rankings-page table {
+        font-size: 0.9em;
+    }
+
+    body.rankings-page th,
+    body.rankings-page td {
+        padding: 12px 10px;
+    }
+
+    /* Hide least important column on mobile */
+    body.rankings-page th:nth-child(4),
+    body.rankings-page td:nth-child(4) {
+        display: none;
+    }
+}

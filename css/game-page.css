@@ -1,0 +1,787 @@
+/* ==========================================
+   GAME PAGE (game.html) STYLES
+   ========================================== */
+
+/* ==========================================
+   GAME CANVAS - Main WebGL rendering area
+   ========================================== */
+
+#glcanvas {
+  padding: 0;
+  margin: 70px auto 20px; /* Space below navigation */
+  display: block;
+  width: 900px;
+  height: 650px;
+  max-width: 90vw; /* Responsive width */
+  max-height: calc(100vh - 100px);
+  position: relative;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  /* Performance optimizations for WebGL */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* ==========================================
+   SCORE DISPLAY - Shows current score/coins
+   ========================================== */
+
+.score {
+  padding: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 75%;
+  left: 0;
+  right: 1%;
+  display: none; /* Hidden by default, shown during gameplay */
+  z-index: 1;
+  width: 12%;
+  height: 31%;
+}
+
+/* Score box styling */
+.score_box {
+  width: 115px;
+  height: 35px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.95), rgba(255, 165, 0, 0.95));
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  animation: pulse 2s ease-in-out infinite; /* Gentle pulsing effect */
+}
+
+.score_box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+}
+
+/* Score text styling */
+.score_box h1 {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.score_box h2 {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+/* Margin helper for score boxes */
+.score_box.ml-20 {
+  margin-left: 20px;
+}
+
+.score_content {
+  position: relative;
+  margin: auto;
+}
+
+/* Game score number */
+.game_score {
+  font-size: 20px;
+}
+
+/* Coins collected - animated glow */
+.coins_collected {
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+/* ==========================================
+   STATS PANEL - Right side game statistics
+   ========================================== */
+
+.stats-panel {
+  position: fixed;
+  top: 70px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  min-width: 200px;
+  max-width: 250px;
+  /* Performance optimizations */
+  will-change: contents;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Individual stat row */
+.stat-item {
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Hover effect on stat items */
+.stat-item:hover {
+  transform: translateX(-3px);
+}
+
+/* Stat label (left side) */
+.stat-label {
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+/* Stat value (right side) */
+.stat-value {
+  font-weight: bold;
+  color: #667eea;
+  font-size: 16px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Animation when stat value updates */
+.stat-value:not(:empty) {
+  animation: valueUpdate 0.3s ease;
+}
+
+@keyframes valueUpdate {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); color: #764ba2; }
+  100% { transform: scale(1); }
+}
+
+/* ==========================================
+   GAME LEGEND - Left side game guide
+   ========================================== */
+
+.game-legend {
+  position: fixed;
+  top: 70px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+/* Legend title */
+.legend-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #333;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 5px;
+}
+
+/* Individual legend item */
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+/* Icon in legend */
+.legend-icon {
+  font-size: 20px;
+  margin-right: 10px;
+  min-width: 30px;
+  text-align: center;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Text description */
+.legend-text {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Note at bottom of legend */
+.legend-note {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  text-align: center;
+  color: #666;
+}
+
+/* ==========================================
+   LEGEND ICON ANIMATIONS
+   ========================================== */
+
+/* Player icon - bouncing */
+.player-icon {
+  animation: bounce 0.8s ease-in-out infinite;
+  color: #FF6B35;
+  font-size: 24px;
+}
+
+/* Coin icon - spinning */
+.coin-icon {
+  animation: spin 2s linear infinite;
+  color: #FFD700;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+  font-size: 22px;
+}
+
+/* Obstacle icon - shaking */
+.obstacle-icon {
+  color: #DC143C;
+  animation: shake 0.5s infinite;
+  font-size: 24px;
+}
+
+/* Train icon - static */
+.train-icon {
+  color: #2F4F4F;
+  font-size: 24px;
+}
+
+/* Boost icon - pulsing */
+.boost-icon {
+  animation: pulse 1.5s infinite;
+  color: #00CED1;
+  filter: drop-shadow(0 0 6px rgba(0, 206, 209, 0.5));
+  font-size: 22px;
+}
+
+/* Bounce animation for player */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Spin animation for coins */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Shake animation for obstacles */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+/* ==========================================
+   GAME OVER MODAL
+   ========================================== */
+
+/* Modal overlay */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1001;
+  margin: auto;
+  padding: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+}
+
+/* Modal content box */
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0 0 30px 0;
+  width: 19%;
+  min-height: 30%;
+  background-color: white;
+  opacity: 0.6;
+  border-radius: 10px;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.8s;
+  animation-name: animatetop;
+  animation-duration: 0.8s;
+}
+
+/* Modal header */
+.modal-header {
+  padding: 10px 16px 20px 16px;
+  text-align: center;
+}
+
+.modal-header p {
+  font-weight: bold;
+  color: black;
+  font-size: 32px;
+}
+
+/* Arrow in modal */
+.modal-footer {
+  border-top: 25px solid transparent;
+  border-left: 50px solid black;
+  border-bottom: 25px solid transparent;
+  margin-left: 42%;
+}
+
+/* High score badge */
+.high-score-badge {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin: 15px 0;
+  animation: pulse 1s infinite;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+}
+
+/* Game stats in modal */
+.game-stats {
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Stat row in modal */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat-row span:last-child {
+  color: #ff6b00;
+}
+
+/* Play again button */
+.play_again {
+  background: #4CAF50;
+  color: white !important;
+  padding: 12px 30px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 20px !important;
+  margin: 10px auto !important;
+  display: inline-block;
+}
+
+.play_again:hover {
+  background: #45a049;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+#arrow {
+  cursor: pointer;
+}
+
+/* ==========================================
+   PAUSE MENU
+   ========================================== */
+
+.pause-menu {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85); /* Dark overlay */
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Pause menu content box */
+.pause-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  min-width: 400px;
+  animation: slideDown 0.4s ease-out;
+}
+
+/* Pause title */
+.pause-title {
+  color: white;
+  font-size: 48px;
+  margin: 0 0 30px 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+
+/* Stats display in pause menu */
+.pause-stats {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(5px);
+}
+
+/* Individual stat in pause menu */
+.pause-stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  color: white;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pause-stat-item:last-child {
+  border-bottom: none;
+}
+
+/* Stat label in pause menu */
+.pause-label {
+  font-weight: normal;
+  opacity: 0.9;
+}
+
+/* Stat value in pause menu */
+.pause-value {
+  font-weight: bold;
+  font-size: 22px;
+  color: #ffd700; /* Gold color */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Button container in pause menu */
+.pause-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Base pause button style */
+.pause-btn {
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pause-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Resume button - green */
+.resume-btn {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+}
+
+.resume-btn:hover {
+  background: linear-gradient(135deg, #0d7a70 0%, #2ed968 100%);
+}
+
+/* Restart button - pink/red */
+.restart-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.restart-btn:hover {
+  background: linear-gradient(135deg, #d771e0 0%, #d94556 100%);
+}
+
+/* Quit button - blue */
+.quit-btn {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.quit-btn:hover {
+  background: linear-gradient(135deg, #3a8cdb 0%, #00d4e0 100%);
+}
+
+/* Pause hint text */
+.pause-hint {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+
+/* Keyboard key styling in hint */
+.pause-hint kbd {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+/* ==========================================
+   VOLUME CONTROL IN PAUSE MENU
+   ========================================== */
+
+/* Volume control container in pause menu */
+.pause-volume-control {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+  backdrop-filter: blur(5px);
+}
+
+/* Volume title in pause menu */
+.pause-volume-title {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Volume slider container - holds icon, slider, and value */
+.pause-volume-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Volume icon in pause menu */
+.pause-volume-icon {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Volume slider in pause menu */
+.pause-volume-slider {
+  flex: 1;
+  max-width: 200px;
+  height: 8px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Volume slider thumb (WebKit) */
+.pause-volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.pause-volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Volume slider thumb (Firefox) */
+.pause-volume-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.pause-volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Volume percentage display in pause menu */
+.pause-volume-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* ==========================================
+   CONTROLS PANEL - Just pause button
+   ========================================== */
+
+.controls-panel {
+  position: fixed;
+  top: 70px;
+  right: 280px; /* To the left of stats panel */
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+/* Control button (pause, etc.) */
+.control-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50%; /* Circular button */
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.control-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.control-button:active {
+  transform: scale(0.95);
+}
+
+/* Legacy pause button (kept for compatibility) */
+.pause-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.pause-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.pause-button:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================
+   VISIBILITY HELPER - Bottom hints
+   ========================================== */
+
+.visibility-help {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 3;
+}
+
+/* Individual help item */
+.help-item {
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  animation: helpPulse 2s infinite;
+}
+
+.help-item span {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+/* Restart help - orange */
+.help-item.help-restart {
+  background: rgba(255, 107, 53, 0.8);
+}
+
+/* Pause help - gold */
+.help-item.help-pause {
+  background: rgba(255, 215, 0, 0.8);
+}
+
+/* Quit help - red */
+.help-item.help-quit {
+  background: rgba(220, 20, 60, 0.8);
+}
+
+/* Help pulse animation */
+@keyframes helpPulse {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN - Mobile/tablet
+   ========================================== */
+
+@media (max-width: 1024px) {
+  #glcanvas {
+    width: 100%;
+    height: auto;
+  }
+  
+  .stats-panel {
+    right: 5px;
+    top: 5px;
+    padding: 10px;
+    min-width: 150px;
+  }
+  
+  .stat-item {
+    font-size: 12px;
+  }
+
+  .visibility-help {
+    bottom: 10px;
+    font-size: 12px;
+  }
+}

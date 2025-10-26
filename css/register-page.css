@@ -1,0 +1,180 @@
+/* ==========================================
+   REGISTER PAGE (register.html) STYLES
+   ========================================== */
+
+/* Override body for register page layout */
+body.register-page {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   FORM CONTAINER - Centers registration form
+   ========================================== */
+
+body.register-page .container {
+    max-width: 500px;
+    margin: 50px auto; /* Centers vertically and horizontally */
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    border-radius: 20px;
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   FORM HEADER - "Register" title
+   ========================================== */
+
+body.register-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================
+   FORM GROUPS - Input field containers
+   ========================================== */
+
+body.register-page .form-group {
+    margin-bottom: 25px; /* Space between fields */
+}
+
+/* Input labels */
+body.register-page label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Input fields */
+body.register-page input {
+    width: 90%;
+    padding: 12px 15px;
+    font-size: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9); /* Almost opaque white */
+    color: #333; /* Dark text */
+    transition: all 0.3s ease;
+}
+
+/* Input focus effect */
+body.register-page input:focus {
+    outline: none;
+    border-color: #4CAF50; /* Green border */
+    background: white;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3); /* Green glow */
+}
+
+/* ==========================================
+   ERROR MESSAGE - Field validation feedback
+   ========================================== */
+
+body.register-page .error-message {
+    color: #ffeb3b; /* Yellow text */
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none; /* Hidden by default */
+    background: rgba(255, 0, 0, 0.2); /* Red background */
+    padding: 8px;
+    border-radius: 5px;
+    border-left: 3px solid #ffeb3b; /* Yellow accent */
+}
+
+/* Show error when has 'show' class */
+body.register-page .error-message.show {
+    display: block;
+}
+
+/* ==========================================
+   SUCCESS MESSAGE - Registration complete
+   ========================================== */
+
+body.register-page .success-message {
+    color: #4CAF50; /* Green text */
+    font-size: 1em;
+    margin-bottom: 20px;
+    display: none; /* Hidden by default */
+    background: rgba(76, 175, 80, 0.2); /* Green background */
+    padding: 12px;
+    border-radius: 5px;
+    border-left: 3px solid #4CAF50; /* Green accent */
+    text-align: center;
+}
+
+/* Show success when has 'show' class */
+body.register-page .success-message.show {
+    display: block;
+}
+
+/* ==========================================
+   SUBMIT BUTTON - Register action
+   ========================================== */
+
+body.register-page .btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    background: #4CAF50; /* Green button */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Button hover effect */
+body.register-page .btn:hover {
+    background: #45a049; /* Darker green */
+    transform: translateY(-2px); /* Lift up */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Button press effect */
+body.register-page .btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   LOGIN LINK - Navigate to login page
+   ========================================== */
+
+body.register-page .login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+body.register-page .login-link a {
+    color: #ffd700; /* Gold color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+body.register-page .login-link a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN - Mobile adjustments
+   ========================================== */
+
+@media (max-width: 768px) {
+    body.register-page .container {
+        margin: 20px; /* Less margin on mobile */
+        padding: 25px;
+    }
+
+    body.register-page h1 {
+        font-size: 2em;
+    }
+}
