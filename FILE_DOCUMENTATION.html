@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Surfers - Complete File Documentation</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #00d4ff;
+            border-bottom: 3px solid #00d4ff;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h2 {
+            color: #0066cc;
+            margin-top: 30px;
+            border-left: 4px solid #00d4ff;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #666;
+            margin-top: 15px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .toc {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #00d4ff;
+            margin: 20px 0;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .toc a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .file-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .file-header h1 {
+            color: white;
+            border: none;
+            margin: 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #f0f7ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00d4ff;
+        }
+        .stat-card strong {
+            display: block;
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #00d4ff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+            h2 {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="file-header">
+            <h1>🚇 Subway Surfers</h1>
+            <h2 style="color: white; border: none; margin-top: 10px;">Complete File Documentation</h2>
+            <p style="margin-top: 10px;">WebGL Endless Runner Game - Technical Reference</p>
+        </div>
+
+        <button onclick="window.print()" class="no-print" style="padding: 10px 20px; background: #00d4ff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-bottom: 20px;">📄 Print/Save as PDF</button>
+
+        <div class="toc">
+            <h2>📑 Table of Contents</h2>
+            <ul>
+                <li><a href="#html-files">1. HTML Files (5 files)</a></li>
+                <li><a href="#js-source">2. JavaScript Source Files (10 files)</a></li>
+                <li><a href="#css-files">3. CSS Files (5 files)</a></li>
+                <li><a href="#libraries">4. External Libraries (3 files)</a></li>
+                <li><a href="#assets">5. Assets (11 files)</a></li>
+                <li><a href="#architecture">6. Architecture Overview</a></li>
+                <li><a href="#dependencies">7. File Dependencies</a></li>
+                <li><a href="#statistics">8. Project Statistics</a></li>
+            </ul>
+        </div>
+
+        <div id="statistics" class="stats-grid">
+            <div class="stat-card">
+                <strong>25</strong>
+                Total Files
+            </div>
+            <div class="stat-card">
+                <strong>~3,500</strong>
+                Lines of Code (JS)
+            </div>
+            <div class="stat-card">
+                <strong>~2.5 MB</strong>
+                Project Size
+            </div>
+            <div class="stat-card">
+                <strong>10</strong>
+                Core JS Files
+            </div>
+        </div>
+
+        <h1 id="html-files">📄 HTML Files</h1>
+
+        <h2>1. index.html - Landing Page</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Main entry point and home page for the game.
+        </div>
+        <h3>Functionality:</h3>
+        <ul>
+            <li>Displays game title and welcome message</li>
+            <li>Shows "PLAY NOW" button linking to game.html</li>
+            <li>Navigation menu to other pages (register, login, rankings)</li>
+            <li>Uses common.css and index.css for styling</li>
+        </ul>
+        <h3>Key Elements:</h3>
+        <ul>
+            <li>Hero section with game branding</li>
+            <li>Call-to-action button</li>
+            <li>Responsive navigation bar</li>
+        </ul>
+
+        <h2>2. game.html - Main Game Page</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Core game interface where the actual gameplay occurs.
+        </div>
+        <h3>Functionality:</h3>
+        <ul>
+            <li>Creates WebGL canvas (900x650px) for 3D rendering</li>
+            <li>Displays real-time stats panel (distance, score, coins)</li>
+            <li>Game over overlay with final stats and restart button</li>
+            <li>Pause/resume functionality (ESC key)</li>
+            <li>Loads all game scripts in correct order</li>
+        </ul>
+        <h3>Script Loading Order:</h3>
+        <ol>
+            <li>Storage and authentication</li>
+            <li>External libraries (gl-matrix, jQuery, webgl-utils)</li>
+            <li>Core utilities and helpers</li>
+            <li>Game objects and environment</li>
+            <li>Player logic and input handling</li>
+            <li>Rendering engine</li>
+            <li>Main game engine</li>
+        </ol>
+
+        <h2>3. login.html - User Login Page</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Authentication interface for returning users.
+        </div>
+        <h3>Functionality:</h3>
+        <ul>
+            <li>Username/password input form</li>
+            <li>Client-side validation</li>
+            <li>Checks credentials against localStorage</li>
+            <li>Redirects to game.html on success</li>
+            <li>Links to registration page for new users</li>
+        </ul>
+
+        <h2>4. register.html - User Registration Page</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> New user account creation interface.
+        </div>
+        <h3>Validation Rules:</h3>
+        <ul>
+            <li><strong>Username:</strong> 3-20 characters, alphanumeric</li>
+            <li><strong>Email:</strong> Valid email format</li>
+            <li><strong>Password:</strong> Minimum 6 characters</li>
+        </ul>
+
+        <h2>5. rankings.html - Leaderboard Page</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Displays top players and their statistics.
+        </div>
+        <h3>Features:</h3>
+        <ul>
+            <li>Top 10 players display</li>
+            <li>Color-coded ranking badges (gold, silver, bronze)</li>
+            <li>Current user highlight</li>
+            <li>Responsive table design</li>
+            <li>Sorts players by high score (descending)</li>
+        </ul>
+
+        <h1 id="js-source">⚙️ JavaScript Source Files</h1>
+
+        <h2>1. src/game-engine.js - Main Game Engine</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Core game loop and orchestration. This is the heart of the game.
+        </div>
+        <h3>Key Functions:</h3>
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>main()</code></td>
+                <td>Initializes WebGL, shaders, and game state</td>
+            </tr>
+            <tr>
+                <td><code>render()</code></td>
+                <td>Main game loop (60 FPS via requestAnimationFrame)</td>
+            </tr>
+            <tr>
+                <td><code>initShaderProgram()</code></td>
+                <td>Compiles and links vertex/fragment shaders</td>
+            </tr>
+            <tr>
+                <td><code>initBuffers()</code></td>
+                <td>Creates WebGL buffers for object geometry</td>
+            </tr>
+        </table>
+
+        <h3>Global Variables:</h3>
+        <ul>
+            <li><strong>Game state:</strong> <code>game_over</code>, <code>game_start</code>, <code>finish</code></li>
+            <li><strong>Speed control:</strong> <code>speed</code>, <code>base_speed</code>, <code>speed_increase_rate</code></li>
+            <li><strong>Visual effects:</strong> <code>flash</code>, <code>gray</code> (game over effects)</li>
+            <li><strong>Arrays:</strong> <code>objects</code>, <code>obstacles</code>, <code>coins</code>, <code>barriers</code>, <code>boosts</code></li>
+        </ul>
+
+        <h3>Game Loop Sequence:</h3>
+        <ol>
+            <li>Update delta time</li>
+            <li>Increase speed gradually</li>
+            <li>Generate new objects (obstacles, coins, powerups)</li>
+            <li>Update all game objects (tick functions)</li>
+            <li>Check collisions</li>
+            <li>Render all objects</li>
+            <li>Update UI displays</li>
+            <li>Request next frame</li>
+        </ol>
+
+        <h2>2. src/player.js - Player Character Logic</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Manages player character state and behavior.
+        </div>
+        <h3>Player Properties:</h3>
+        <ul>
+            <li><strong>Position:</strong> <code>translate</code> [x, y, z]</li>
+            <li><strong>Movement:</strong> <code>targetLane</code>, <code>isTransitioning</code>, <code>transitionSpeed</code></li>
+            <li><strong>Physics:</strong> <code>speed_y</code>, <code>jump</code>, <code>jumpheight</code></li>
+            <li><strong>Stats:</strong> <code>score</code>, <code>coins</code>, <code>distance</code></li>
+            <li><strong>Powerups:</strong> <code>flyboost</code></li>
+        </ul>
+
+        <h3>Movement Logic:</h3>
+        <ul>
+            <li><strong>Lane Switching:</strong> Smooth transitions between 3 lanes (-1.05, 0.0, 1.05)</li>
+            <li><strong>Jumping:</strong> 
+                <ul>
+                    <li>Triggered by Spacebar or Up Arrow</li>
+                    <li>Must be grounded to jump (<code>jump == 0</code>)</li>
+                    <li>Gravity physics applied</li>
+                    <li>Can jump over obstacles</li>
+                </ul>
+            </li>
+            <li><strong>Flying:</strong> Activated by flyboost powerup (10 seconds)</li>
+        </ul>
+
+        <h2>3. src/game-objects.js - Game Objects</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Defines all collectible and obstacle objects.
+        </div>
+        
+        <h3>Contains 4 Object Types:</h3>
+        
+        <h4>A. obstacle() - Train/Container Obstacles</h4>
+        <ul>
+            <li>Large obstacles that must be jumped over</li>
+            <li>Two textures: train.jpg, container.jpg</li>
+            <li>Dimensions: 0.4 x 0.9 x 1.2 units</li>
+            <li>Position: y = -0.25 (ground level)</li>
+        </ul>
+
+        <h4>B. barrier() - Low Barriers</h4>
+        <ul>
+            <li>Small barriers on the track</li>
+            <li>Texture: barrier.jpg</li>
+            <li>Dimensions: 0.28 x 0.14 x 0.07 units</li>
+            <li>Position: y = -0.63 (very low)</li>
+        </ul>
+
+        <h4>C. coin() - Collectible Coins</h4>
+        <ul>
+            <li>Spinning coins for points</li>
+            <li>Texture: coin.png</li>
+            <li>Dimensions: 0.2 x 0.2 x 0.03 units</li>
+            <li>Rotation animation: continuous spin</li>
+        </ul>
+
+        <h4>D. boost() - Flyboost Powerup</h4>
+        <ul>
+            <li>Flyboost cube powerup</li>
+            <li>Texture: flyboost.jpg</li>
+            <li>Dimensions: 0.2 x 0.2 x 0.2 units</li>
+            <li>Effect: Allows flying for 10 seconds</li>
+        </ul>
+
+        <h3>Object Lifecycle:</h3>
+        <ol>
+            <li>Spawn at z = -35 (far away)</li>
+            <li>Move forward each frame (z += speed)</li>
+            <li>Check player collision</li>
+            <li>Delete when z > 2 (behind player)</li>
+            <li>Respawn new object</li>
+        </ol>
+
+        <h2>4. src/environment.js - Environment Elements</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Creates game world environment.
+        </div>
+        <h3>Contains 3 Environment Types:</h3>
+        <ul>
+            <li><strong>ground():</strong> Ground plane with ground.png texture</li>
+            <li><strong>track():</strong> Three parallel track lanes with continuous scrolling</li>
+            <li><strong>wall():</strong> Left and right boundary walls creating tunnel effect</li>
+        </ul>
+
+        <h2>5. src/input-handler.js - Keyboard Input</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Captures and processes keyboard input.
+        </div>
+        <h3>Supported Keys:</h3>
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Code</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>Left Arrow / A</td>
+                <td>37 / 65</td>
+                <td>Move to left lane</td>
+            </tr>
+            <tr>
+                <td>Right Arrow / D</td>
+                <td>39 / 68</td>
+                <td>Move to right lane</td>
+            </tr>
+            <tr>
+                <td>Up Arrow / Space</td>
+                <td>38 / 32</td>
+                <td>Jump</td>
+            </tr>
+            <tr>
+                <td>ESC</td>
+                <td>27</td>
+                <td>Pause/Resume</td>
+            </tr>
+        </table>
+
+        <h2>6. src/renderer.js - WebGL Rendering Engine</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Handles all WebGL rendering operations.
+        </div>
+        <h3>Key Functions:</h3>
+        <ul>
+            <li><code>initBuffers(gl, object)</code> - Creates WebGL buffers for object geometry</li>
+            <li><code>drawScene(...)</code> - Renders a single object with transformations</li>
+        </ul>
+        <h3>Rendering Pipeline:</h3>
+        <ol>
+            <li>Set viewport</li>
+            <li>Clear color and depth buffers</li>
+            <li>Enable depth testing</li>
+            <li>For each object: Set uniforms, bind buffers, draw elements</li>
+        </ol>
+
+        <h2>7. src/finishline.js - Finish Line Logic</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Creates finish line when score reaches 100.
+        </div>
+        <ul>
+            <li>Spawns at z = -35 when score >= 100</li>
+            <li>Moves forward to meet player</li>
+            <li>Sets <code>finish = true</code> when reached</li>
+        </ul>
+
+        <h2>8. src/core-utils.js - Utility Functions</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Helper functions and utilities.
+        </div>
+        <h3>Contains:</h3>
+        <ul>
+            <li><strong>Helper Functions:</strong> <code>getRandomInt()</code>, <code>degToRad()</code></li>
+            <li><strong>Camera Functions:</strong> <code>cameraLogic()</code> for camera positioning</li>
+            <li><strong>Texture Loading:</strong> <code>loadTexture(gl, url)</code> for async image loading</li>
+        </ul>
+
+        <h2>9. src/storage.js - LocalStorage Management</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> Handles all data persistence.
+        </div>
+        <h3>Key Functions:</h3>
+        <ul>
+            <li><code>saveGameStats(username, score, coins, distance)</code> - Updates user statistics</li>
+            <li><code>getUserStats(username)</code> - Retrieves user statistics</li>
+            <li><code>getAllUserStats()</code> - Gets all users for leaderboard</li>
+        </ul>
+        <h3>Data Structure:</h3>
+        <pre><code>{
+  username: string,
+  email: string,
+  password: string,
+  highScore: number,
+  totalCoins: number,
+  gamesPlayed: number,
+  totalDistance: number
+}</code></pre>
+
+        <h2>10. src/auth.js - Authentication</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> User authentication and session management.
+        </div>
+        <h3>Key Functions:</h3>
+        <ul>
+            <li><code>registerUser()</code> - Creates new user account</li>
+            <li><code>loginUser()</code> - Validates credentials</li>
+            <li><code>getCurrentUser()</code> - Returns logged-in user</li>
+            <li><code>logoutUser()</code> - Clears session</li>
+        </ul>
+
+        <h1 id="css-files">🎨 CSS Files</h1>
+
+        <h2>1. css/common.css - Shared Styles</h2>
+        <p>Global styles used across all pages including navigation, typography, colors, and responsive utilities.</p>
+
+        <h2>2. css/game-page.css - Game Page Styles</h2>
+        <p>Specific styles for game.html including canvas container, stats panel, and game over overlay.</p>
+
+        <h2>3. css/index.css - Landing Page Styles</h2>
+        <p>Home page specific styles including hero section and "Play Now" button animation.</p>
+
+        <h2>4. css/login-page.css & register-page.css</h2>
+        <p>Authentication page styles for forms, inputs, and validation feedback.</p>
+
+        <h2>5. css/rankings-page.css - Leaderboard Styles</h2>
+        <p>Rankings table styling with badges, hover effects, and responsive design.</p>
+
+        <h1 id="libraries">📚 External Libraries</h1>
+
+        <h2>1. libs/gl-matrix.js</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> 3D math library for WebGL
+        </div>
+        <h3>Provides:</h3>
+        <ul>
+            <li><strong>mat4:</strong> 4x4 matrix operations (perspective, translate, rotate)</li>
+            <li><strong>vec3:</strong> 3D vector operations (normalize, cross, dot)</li>
+        </ul>
+        <div class="warning-box">
+            <strong>Why Needed:</strong> WebGL requires matrix math for all 3D transformations. Writing this from scratch would be thousands of lines of complex code.
+        </div>
+
+        <h2>2. libs/jquery-3.3.1.min.js</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> JavaScript utility library (~87KB)
+        </div>
+        <h3>Used For:</h3>
+        <ul>
+            <li>Event handling: <code>$(document).keydown()</code></li>
+            <li>DOM manipulation: <code>$('#element')</code></li>
+            <li>Cross-browser compatibility</li>
+        </ul>
+        <p><em>Note: Could be replaced with vanilla JavaScript</em></p>
+
+        <h2>3. libs/webgl-utils.js</h2>
+        <div class="info-box">
+            <strong>Purpose:</strong> WebGL helper utilities
+        </div>
+        <h3>Provides:</h3>
+        <ul>
+            <li>Shader compilation helpers</li>
+            <li>Error checking and logging</li>
+            <li>Context initialization helpers</li>
+        </ul>
+
+        <h1 id="assets">🖼️ Assets</h1>
+
+        <h2>Textures (10 images)</h2>
+        <table>
+            <tr>
+                <th>File</th>
+                <th>Purpose</th>
+            </tr>
+            <tr><td>player.png</td><td>Player character texture</td></tr>
+            <tr><td>ground.png</td><td>Ground/floor texture</td></tr>
+            <tr><td>track.jpeg</td><td>Track lane texture</td></tr>
+            <tr><td>wall.jpg</td><td>Side wall texture</td></tr>
+            <tr><td>train.jpg</td><td>Train obstacle texture</td></tr>
+            <tr><td>container.jpg</td><td>Container obstacle texture</td></tr>
+            <tr><td>barrier.jpg</td><td>Barrier texture</td></tr>
+            <tr><td>coin.png</td><td>Coin collectible texture</td></tr>
+            <tr><td>flyboost.jpg</td><td>Flyboost powerup texture</td></tr>
+            <tr><td>finish.jpg</td><td>Finish line texture</td></tr>
+        </table>
+
+        <h2>Audio (1 file)</h2>
+        <ul>
+            <li><strong>bgmusic.mp3</strong> - Background music that loops during gameplay</li>
+        </ul>
+
+        <h1 id="architecture">🏗️ Architecture Overview</h1>
+
+        <h2>Data Flow</h2>
+        <pre><code>User Input (Keyboard)
+    ↓
+input-handler.js → statusKeys object
+    ↓
+game-engine.js (main loop)
+    ↓
+player_tick() → Updates player position
+    ↓
+*_tick() functions → Update all objects
+    ↓
+Collision Detection
+    ↓
+renderer.js → Draws everything
+    ↓
+Screen Output</code></pre>
+
+        <h2>Game State Management</h2>
+        <table>
+            <tr>
+                <th>State</th>
+                <th>Flags</th>
+            </tr>
+            <tr>
+                <td>Initial</td>
+                <td>game_start = false</td>
+            </tr>
+            <tr>
+                <td>Playing</td>
+                <td>game_start = true, game_over = false</td>
+            </tr>
+            <tr>
+                <td>Game Over</td>
+                <td>game_over = true</td>
+            </tr>
+            <tr>
+                <td>Win</td>
+                <td>finish = true</td>
+            </tr>
+        </table>
+
+        <h2>Collision Detection Method</h2>
+        <p><strong>Axis-Aligned Bounding Box (AABB)</strong></p>
+        <pre><code>if (player.x == object.x && 
+    player.z within object.z range &&
+    player.y at ground level) {
+    // Collision detected
+}</code></pre>
+
+        <h1 id="dependencies">🔗 File Dependencies</h1>
+
+        <h2>Critical Load Order</h2>
+        <ol>
+            <li>jQuery (if used)</li>
+            <li>gl-matrix (math library)</li>
+            <li>webgl-utils (WebGL helpers)</li>
+            <li>storage.js (data functions)</li>
+            <li>auth.js (depends on storage)</li>
+            <li>core-utils.js (helpers, texture loading)</li>
+            <li>Game objects (obstacle, coin, etc.)</li>
+            <li>environment.js (ground, walls)</li>
+            <li>player.js (player logic)</li>
+            <li>input-handler.js (keyboard)</li>
+            <li>renderer.js (drawing functions)</li>
+            <li>game-engine.js (main loop - <strong>must be last</strong>)</li>
+        </ol>
+
+        <h2>Dependency Graph</h2>
+        <pre><code>game-engine.js
+    ├── renderer.js
+    ├── core-utils.js (camera, textures)
+    ├── player.js
+    ├── game-objects.js
+    ├── environment.js
+    ├── finishline.js
+    ├── input-handler.js
+    ├── storage.js
+    ├── auth.js
+    └── External libs (gl-matrix, webgl-utils)</code></pre>
+
+        <h1>📊 Project Statistics</h1>
+
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Count</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td>Total Files</td>
+                <td>25</td>
+                <td>Excluding documentation</td>
+            </tr>
+            <tr>
+                <td>HTML Files</td>
+                <td>5</td>
+                <td>index, game, login, register, rankings</td>
+            </tr>
+            <tr>
+                <td>JavaScript (Custom)</td>
+                <td>10</td>
+                <td>~3,500 lines of code</td>
+            </tr>
+            <tr>
+                <td>JavaScript (Libraries)</td>
+                <td>3</td>
+                <td>~15,000 lines of code</td>
+            </tr>
+            <tr>
+                <td>CSS Files</td>
+                <td>5</td>
+                <td>~1,200 lines of code</td>
+            </tr>
+            <tr>
+                <td>Image Assets</td>
+                <td>10</td>
+                <td>Various formats (.jpg, .png, .jpeg)</td>
+            </tr>
+            <tr>
+                <td>Audio Assets</td>
+                <td>1</td>
+                <td>bgmusic.mp3</td>
+            </tr>
+            <tr>
+                <td>Total Project Size</td>
+                <td>~2.5 MB</td>
+                <td>Code: ~900KB, Assets: ~1.6MB</td>
+            </tr>
+        </table>
+
+        <h2>Browser Compatibility</h2>
+        <div class="info-box">
+            <ul>
+                <li><strong>Best:</strong> Firefox (tested and recommended)</li>
+                <li><strong>Chrome:</strong> May have CORS issues with local files</li>
+                <li><strong>Edge/Safari:</strong> Should work but not extensively tested</li>
+            </ul>
+        </div>
+
+        <h2>Known Limitations</h2>
+        <div class="warning-box">
+            <ol>
+                <li>CORS restrictions for local file:// protocol</li>
+                <li>No server-side validation (client-side only)</li>
+                <li>LocalStorage limited to 5-10MB</li>
+                <li>No actual multiplayer (leaderboard is local only)</li>
+            </ol>
+        </div>
+
+        <h2>Future Improvements</h2>
+        <ul>
+            <li>Replace jQuery with vanilla JavaScript</li>
+            <li>Add more obstacle types</li>
+            <li>Implement difficulty levels</li>
+            <li>Add sound effects for actions</li>
+            <li>Mobile touch controls</li>
+            <li>Server-side leaderboard</li>
+            <li>Particle effects</li>
+            <li>More power-ups</li>
+        </ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 2px solid #00d4ff;">
+        
+        <div style="text-align: center; color: #666; padding: 20px;">
+            <p><strong>Document Generated:</strong> October 27, 2025</p>
+            <p><strong>Project:</strong> Subway Surfers - WebGL Endless Runner</p>
+            <p><strong>Version:</strong> 1.0</p>
+        </div>
+    </div>
+</body>
+</html>
