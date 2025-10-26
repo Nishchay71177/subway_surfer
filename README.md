@@ -41,22 +41,15 @@ An exciting endless runner game built with **WebGL, HTML5, CSS, and JavaScript**
 ├── libs/             # External libraries (jQuery, gl-matrix, WebGL utils)
 ├── src/
 │   ├── auth.js           # User authentication
-│   ├── barrier.js        # Barrier obstacles
-│   ├── camera.js         # Camera controls
-│   ├── coin.js           # Coin collectibles
+│   ├── core-utils.js     # Utilities (helpers, camera, texture loading)
+│   ├── environment.js    # Environment (ground, track, walls)
 │   ├── finishline.js     # Finish line logic
 │   ├── game-engine.js    # Main game engine & loop
-│   ├── ground.js         # Ground plane
-│   ├── helpers.js        # Utility/helper functions
+│   ├── game-objects.js   # Game objects (obstacles, barriers, coins, powerups)
 │   ├── input-handler.js  # Keyboard input handling
-│   ├── obstacle.js       # Obstacle generation
 │   ├── player.js         # Player character logic
-│   ├── powerup.js        # Power-up system (fly boost)
 │   ├── renderer.js       # WebGL rendering engine
-│   ├── storage.js        # LocalStorage management
-│   ├── texture-loader.js # Texture loading system
-│   ├── track.js          # Track generation
-│   └── wall.js           # Side walls
+│   └── storage.js        # LocalStorage management
 ├── game.html         # Main game page
 ├── index.html        # Landing page
 ├── login.html        # Login page
