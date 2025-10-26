@@ -1,4 +1,4 @@
-# Subway Surfers - File Documentation
+# Train Run - File Documentation
 
 ## Table of Contents
 1. [HTML Files](#html-files)
@@ -777,5 +777,5 @@ game-engine.js
 ---
 
 *Document Generated: October 27, 2025*
-*Project: Subway Surfers - WebGL Endless Runner*
+*Project: Train Run - WebGL Endless Runner*
 *Version: 1.0*

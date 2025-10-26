@@ -1,4 +1,4 @@
-// LocalStorage Manager for Subway Surfers
+// LocalStorage Manager for Train Run
 const StorageManager = {
   // Keys for localStorage
   KEYS: {

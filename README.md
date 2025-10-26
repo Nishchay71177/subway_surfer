@@ -1,4 +1,4 @@
-# 🚇 Subway Surfers - WebGL Endless Runner
+# � Train Run - WebGL Endless Runner
 
 An exciting endless runner game built with **WebGL, HTML5, CSS, and JavaScript**. All game data is stored locally using browser's localStorage - no database or server required!
 
