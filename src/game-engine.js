@@ -89,19 +89,14 @@ function main() {
   void main(void) {
       highp vec4 color0 = texture2D(texture0, vTextureCoord);
 
-      if (gray)
-      {
+      if (gray) {
 				gl_FragColor = toGrayscale(vec4(color0.rgb * vLighting, color0.a));
-			}
-			else {
-        // ENHANCED: Vibrant colors with saturation boost
+			} else {
         vec3 brightColor = color0.rgb * vLighting * 2.0;
-        // Add slight saturation boost
         float luminance = dot(brightColor, vec3(0.299, 0.587, 0.114));
         vec3 saturated = mix(vec3(luminance), brightColor, 1.15);
         gl_FragColor = vec4(saturated, color0.a);
       }
-      //gl_FragColor = color0;
   }
   `;
 
@@ -144,8 +139,6 @@ function main() {
   buffer_walls_right = [];
 
   objects.push(player(gl));
-  // Police character removed
-
   objects.push(ground(gl));
   var finish_object = finishline(gl);
   var buffer_finish_object = initBuffers(gl, finish_object);
@@ -335,7 +328,7 @@ function main() {
 
       wall_tick(gl, walls_left, walls_right);
       obstacle_tick(gl, obstacles, objects[0]);
-      barrier_tick(gl, barriers, objects[0], null);
+      barrier_tick(gl, barriers, objects[0]);
       coin_tick(gl, coins, objects[0]);
       
       player_tick(objects[0], obstacles);

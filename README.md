@@ -1,94 +1,84 @@
 # 🚇 Subway Surfers - WebGL Endless Runner
 
-An exciting endless runner game built with **HTML, CSS, JavaScript, and JSON** - no database required! All game data is stored locally using browser's localStorage.
+An exciting endless runner game built with **WebGL, HTML5, CSS, and JavaScript**. All game data is stored locally using browser's localStorage - no database or server required!
 
-## 🎮 Play the Game
+## 🎮 Quick Start
 
-### Quick Start
 1. Open `index.html` in your web browser to see the home page
 2. Click "PLAY NOW" or directly open `game.html` to start playing
-3. For instructions, open `instructions.html`
-
-### Online Play
-Simply open any of the HTML files in a modern web browser. No server or installation required!
+3. Enjoy the game in any modern web browser (Firefox recommended)
 
 ## 🎯 Game Controls
-* **Jump**: Space Bar / Up Arrow Key
-* **Move Left**: A Key / Left Arrow Key  
-* **Move Right**: D Key / Right Arrow Key
+
+* **Jump**: Spacebar or Up Arrow (↑)
+* **Move Left**: A Key or Left Arrow (←)
+* **Move Right**: D Key or Right Arrow (→)
+* **Pause/Resume**: ESC Key
 
 ## ✨ Features
 
-### Core Gameplay
-- ✅ Endless runner gameplay with WebGL 3D graphics
-- ✅ Smooth character movement and physics
-- ✅ Dynamic obstacle generation (barriers, containers, trains)
-- ✅ Coin collection system
-- ✅ Power-ups (Fly Boost, Jump Boost)
-- ✅ Background music and sound effects
-- ✅ Increasing difficulty over time
+### Gameplay
+- Endless runner with WebGL 3D graphics
+- Smooth character movement with lane transitions
+- Dynamic obstacle generation (barriers, containers, trains)
+- Collectible coins
+- Fly Boost power-up
+- Background music and sound effects
+- Progressive difficulty increase
 
-### Data Persistence
-- 📊 **High Score Tracking** - Beat your best score!
-- 🪙 **Total Coins Collected** - Lifetime coin counter
-- 🎮 **Games Played** - Track how many times you've played
-- 📏 **Total Distance** - Combined distance traveled
-- 💾 **Local Storage** - All data saved in your browser
-- 📈 **Real-time Stats Display** - See your progress
+### Progress Tracking
+- 📊 High score tracking
+- 🪙 Total coins collected
+- 🎮 Games played counter
+- 📏 Total distance traveled
+- 💾 All data persists in browser localStorage
 
-### No Database Required
-All game data is stored using browser's `localStorage` API. Your progress persists across sessions without needing any backend server or database!
+## 🗂️ Project Structure
 
-## Directory Structure
 ```
-.
-├── assets
-│   ├── barrier.jpg
-│   ├── bgmusic.mp3
-│   ├── coin.png
-│   ├── container.jpeg
-│   ├── container.jpg
-│   ├── finish.jpg
-│   ├── flyboost.jpg
-│   ├── ground.png
-│   ├── jumpboost.png
-│   ├── player.png
-│   ├── police.png
-│   ├── track.jpeg
-│   ├── train.jpg
-│   └── wall.jpg
-├── game.html
-├── libs
-│   ├── gl-matrix.js
-│   ├── jquery-3.3.1.min.js
-│   └── webgl-utils.js
-├── LICENSE
-├── README.md
-├── src
-│   ├── barrier.js
-│   ├── boost.js
-│   ├── camera.js
-│   ├── coin.js
-│   ├── draw.js
-│   ├── finishline.js
-│   ├── ground.js
-│   ├── keyhandler.js
-│   ├── main.js
-│   ├── obstacle.js
-│   ├── player.js
-│   ├── police.js
-│   ├── texture.js
-│   ├── track.js
-│   ├── utility.js
-│   └── wall.js
-└── style.css
+├── assets/           # Game textures and audio
+├── css/              # Stylesheets
+├── libs/             # External libraries (jQuery, gl-matrix, WebGL utils)
+├── src/
+│   ├── auth.js           # User authentication
+│   ├── barrier.js        # Barrier obstacles
+│   ├── camera.js         # Camera controls
+│   ├── coin.js           # Coin collectibles
+│   ├── finishline.js     # Finish line logic
+│   ├── game-engine.js    # Main game engine & loop
+│   ├── ground.js         # Ground plane
+│   ├── helpers.js        # Utility/helper functions
+│   ├── input-handler.js  # Keyboard input handling
+│   ├── obstacle.js       # Obstacle generation
+│   ├── player.js         # Player character logic
+│   ├── powerup.js        # Power-up system (fly boost)
+│   ├── renderer.js       # WebGL rendering engine
+│   ├── storage.js        # LocalStorage management
+│   ├── texture-loader.js # Texture loading system
+│   ├── track.js          # Track generation
+│   └── wall.js           # Side walls
+├── game.html         # Main game page
+├── index.html        # Landing page
+├── login.html        # Login page
+├── register.html     # Registration page
+└── rankings.html     # Leaderboard page
 ```
 
-## Bonus
-* Background music throughout the game
-* Textures for all objects
-* Lighting used with ambience lighting & directional lighting
+## 🎨 Technical Features
 
-## Note
-* Run the game on Firefox (tested). Google Chrome causes CORS error and code currently does not handle that error.
-* For best experience, maximize the window size and play.
+- WebGL 3D graphics with texture mapping
+- Ambient and directional lighting
+- Collision detection
+- Physics-based jumping mechanics
+- LocalStorage-based persistence
+- Responsive UI
+
+## 📝 Notes
+
+- **Browser Compatibility**: Best on Firefox. Chrome may have CORS issues with local files.
+- **Performance**: Maximize window for best experience.
+- **No Installation**: Runs entirely in the browser, no server needed!
+
+## 📄 License
+
+See LICENSE file for details.

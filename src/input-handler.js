@@ -1,0 +1,17 @@
+$(document).keydown(function(event){
+	const charCode = event.keyCode;
+	
+	if ([37, 38, 39, 40, 32, 65, 68, 87, 83].indexOf(charCode) !== -1) {
+		event.preventDefault();
+	}
+	
+	statusKeys[charCode] = true;
+  
+  if (charCode === 27 && typeof isPaused !== 'undefined') {
+    isPaused ? resumeGame() : pauseGame();
+  }
+});
+
+$(document).keyup(function(event){
+	statusKeys[event.keyCode] = false;
+});

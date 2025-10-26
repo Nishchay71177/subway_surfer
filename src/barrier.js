@@ -172,7 +172,7 @@ function barrier_delete(gl, object) {
   buffer_barriers[index] = initBuffers(gl, barriers[index]);
 }
 
-function barrier_tick(gl, barriers, player, police){
+function barrier_tick(gl, barriers, player){
 
   for(let i = 0; i < barriers.length; ++i){
     barriers[i].translate[2] += speed;
