@@ -118,7 +118,7 @@ function player_tick(object, obstacles) {
     }
   }
 
-  if (statusKeys[32]) {
+  if ((statusKeys[32] || statusKeys[38]) && object.jump == 0) {
     object.jump = 1;
   }
 
